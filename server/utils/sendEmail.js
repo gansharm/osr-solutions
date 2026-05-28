@@ -7,25 +7,34 @@ async (data) => {
   try {
 
     const transporter =
-      nodemailer.createTransport({
+nodemailer.createTransport({
 
-        host:
-          "smtp-relay.brevo.com",
+  host:
+    "smtp-relay.brevo.com",
 
-        port: 587,
+  port: 587,
 
-        secure: false,
+  secure: false,
 
-        auth: {
-          user:
-            process.env
-              .EMAIL_USER,
+  auth: {
+    user:
+      process.env
+        .EMAIL_USER,
 
-          pass:
-            process.env
-              .EMAIL_PASS,
-        },
-      });
+    pass:
+      process.env
+        .EMAIL_PASS,
+  },
+
+  connectionTimeout:
+    10000,
+
+  greetingTimeout:
+    10000,
+
+  socketTimeout:
+    10000,
+});
 
     await transporter
       .sendMail({
@@ -72,6 +81,9 @@ async (data) => {
       "Email Error:",
       error
     );
+    console.log(
+  process.env.EMAIL_USER
+);
   }
 };
 
