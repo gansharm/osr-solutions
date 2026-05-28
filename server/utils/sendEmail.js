@@ -4,14 +4,7 @@ require("axios");
 const sendEmail =
 async (data) => {
 
-  try {
-
-    console.log(
-      process.env
-        .BREVO_API_KEY
-        ? "API KEY FOUND"
-        : "API KEY MISSING"
-    );
+   
 
     const response =
       await axios.post(
