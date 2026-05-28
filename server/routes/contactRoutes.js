@@ -26,17 +26,18 @@ router.post(
       await contact
         .save();
 
-      // Send email
-      await sendEmail(
-        req.body
-      );
-
+      // Respond immediately
       res.status(201)
       .json({
         success: true,
         message:
           "Form Submitted",
       });
+
+      // Send email after response
+      sendEmail(
+        req.body
+      );
 
     } catch (error) {
 

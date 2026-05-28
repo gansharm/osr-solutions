@@ -8,8 +8,13 @@ async (data) => {
 
     const transporter =
       nodemailer.createTransport({
-        service:
-          "gmail",
+
+        host:
+          "smtp.gmail.com",
+
+        port: 587,
+
+        secure: false,
 
         auth: {
           user:
@@ -20,54 +25,59 @@ async (data) => {
             process.env
               .EMAIL_PASS,
         },
+
+        tls: {
+          rejectUnauthorized:
+            false,
+        },
       });
 
     await transporter
-.sendMail({
+      .sendMail({
 
-  from:
-    `"OSR Solutions" <${process.env.EMAIL_USER}>`,
+        from:
+          `"OSR Solutions" <${process.env.EMAIL_USER}>`,
 
-  to:
-    "osrsolutions51@gmail.com",
+        to:
+          "osrsolutions51@gmail.com",
 
-  replyTo:
-    data.email,
+        replyTo:
+          data.email,
 
-  subject:
-    "🚀 New Contact Form Submission",
+        subject:
+          "🚀 New Contact Form Submission",
 
-  html: `
-    <h2>
-      New Customer Inquiry
-    </h2>
+        html: `
+          <h2>
+            New Customer Inquiry
+          </h2>
 
-    <p>
-      <strong>Name:</strong>
-      ${data.name}
-    </p>
+          <p>
+            <strong>Name:</strong>
+            ${data.name}
+          </p>
 
-    <p>
-      <strong>Email:</strong>
-      ${data.email}
-    </p>
+          <p>
+            <strong>Email:</strong>
+            ${data.email}
+          </p>
 
-    <p>
-      <strong>Phone:</strong>
-      ${data.phone}
-    </p>
+          <p>
+            <strong>Phone:</strong>
+            ${data.phone}
+          </p>
 
-    <p>
-      <strong>Service:</strong>
-      ${data.service}
-    </p>
+          <p>
+            <strong>Service:</strong>
+            ${data.service}
+          </p>
 
-    <p>
-      <strong>Message:</strong>
-      ${data.message}
-    </p>
-  `,
-});
+          <p>
+            <strong>Message:</strong>
+            ${data.message}
+          </p>
+        `,
+      });
 
     console.log(
       "Email Sent ✅"
