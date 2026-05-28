@@ -4,7 +4,9 @@ require("axios");
 const sendEmail =
 async (data) => {
 
-   
+  try {
+
+     
 
     const response =
       await axios.post(
