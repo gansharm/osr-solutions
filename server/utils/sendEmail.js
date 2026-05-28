@@ -43,7 +43,7 @@ nodemailer.createTransport({
           `"OSR Solutions" <osrsolutions51@gmail.com>`,
 
         to:
-          "osrsolution51@gmail.com",
+          "osrsolutions51@gmail.com",
 
         replyTo:
           data.email,
