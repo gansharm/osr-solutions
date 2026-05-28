@@ -1,50 +1,40 @@
-const nodemailer =
-require("nodemailer");
+const axios =
+require("axios");
 
 const sendEmail =
 async (data) => {
 
   try {
 
-    const transporter =
-nodemailer.createTransport({
+    await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          name:
+            "OSR Solutions",
+          email:
+            "osrsolutions51@gmail.com",
+        },
 
-  host:
-    "smtp-relay.brevo.com",
+        to: [
+          {
+            email:
+              "osrsolutions51@gmail.com",
+          },
+        ],
 
-  port: 2525,
-
-  secure: false,
-
-  requireTLS: true,
-
-  auth: {
-    user:
-      process.env
-        .EMAIL_USER,
-
-    pass:
-      process.env
-        .EMAIL_PASS,
-  },
-});
-    await transporter
-      .sendMail({
-
-        from:
-  `"OSR Solutions" <${process.env.EMAIL_USER}>`,
-
-        to:
-          "osrsolutions51@gmail.com",
-
-        replyTo:
-          data.email,
+        replyTo: {
+          email:
+            data.email,
+        },
 
         subject:
           "🚀 New Contact Form Submission",
 
-        html: `
-          <h2>New Customer Inquiry</h2>
+        htmlContent: `
+          <h2>
+            New Customer Inquiry
+          </h2>
 
           <p><strong>Name:</strong>
           ${data.name}</p>
@@ -61,7 +51,21 @@ nodemailer.createTransport({
           <p><strong>Message:</strong>
           ${data.message}</p>
         `,
-      });
+      },
+      {
+        headers: {
+          accept:
+            "application/json",
+
+          "api-key":
+            process.env
+              .BREVO_API_KEY,
+
+          "content-type":
+            "application/json",
+        },
+      }
+    );
 
     console.log(
       "Email Sent ✅"
@@ -71,11 +75,10 @@ nodemailer.createTransport({
 
     console.log(
       "Email Error:",
-      error
+      error.response
+        ?.data ||
+        error.message
     );
-    console.log(
-  process.env.EMAIL_USER
-);
   }
 };
 
