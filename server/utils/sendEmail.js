@@ -44,40 +44,30 @@ async (data) => {
               New Customer Inquiry
             </h2>
 
-            <p>
-              <strong>Name:</strong>
-              ${data.name}
-            </p>
+            <p><strong>Name:</strong>
+            ${data.name}</p>
 
-            <p>
-              <strong>Email:</strong>
-              ${data.email}
-            </p>
+            <p><strong>Email:</strong>
+            ${data.email}</p>
 
-            <p>
-              <strong>Phone:</strong>
-              ${data.phone}
-            </p>
+            <p><strong>Phone:</strong>
+            ${data.phone}</p>
 
-            <p>
-              <strong>Service:</strong>
-              ${data.service}
-            </p>
+            <p><strong>Service:</strong>
+            ${data.service}</p>
 
-            <p>
-              <strong>Message:</strong>
-              ${data.message}
-            </p>
+            <p><strong>Message:</strong>
+            ${data.message}</p>
           `,
         },
         {
           headers: {
-            accept:
-              "application/json",
-
             "api-key":
               process.env
                 .BREVO_API_KEY,
+
+            accept:
+              "application/json",
 
             "content-type":
               "application/json",
