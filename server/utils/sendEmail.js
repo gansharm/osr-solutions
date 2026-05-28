@@ -40,7 +40,7 @@ nodemailer.createTransport({
       .sendMail({
 
         from:
-          `"OSR Solutions" <osrsolution51@gmail.com>`,
+          `"OSR Solutions" <osrsolutions51@gmail.com>`,
 
         to:
           "osrsolution51@gmail.com",
