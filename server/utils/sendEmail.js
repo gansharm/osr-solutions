@@ -39,7 +39,7 @@ async (data) => {
           `"OSR Solutions" <${process.env.EMAIL_USER}>`,
 
         to:
-          "osrsolutions51@gmail.com",
+          "gansharma3355@gmail.com",
 
         replyTo:
           data.email,
